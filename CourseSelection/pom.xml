@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.demo</groupId>
+	<artifactId>courseselection</artifactId>
+	<parent>
+		<groupId>org.jboss.seam</groupId>
+		<artifactId>examples-ee6</artifactId>
+		<version>2.3.0.CR1</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+    <packaging>pom</packaging>
+    <name>Course SelectionSystem</name>
+    
+    <properties>
+        <example.name>courseselection</example.name>
+    </properties>
+    
+    <modules>
+    	<module>courseselection-ear</module>
+    	<module>courseselection-ejb</module>
+    	<module>courseselection-web</module>
+    	<module>courseselection-tests</module>
+    </modules>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.demo.courseselection</groupId>
+                <artifactId>courseselection-ejb</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+            <dependency>
+                <groupId>com.demo.courseselection</groupId>
+                <artifactId>courseselection-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>com.demo.courseselection</groupId>
+                <artifactId>courseselection-ear</artifactId>
+                <version>${project.version}</version>
+                <type>ear</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

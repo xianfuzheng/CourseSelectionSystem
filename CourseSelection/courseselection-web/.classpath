@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="src" path="/courseselection-ejb"/>
+  <classpathentry kind="var" path="M2_REPO/org/jboss/seam/jboss-seam/2.3.0.CR1/jboss-seam-2.3.0.CR1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jboss/el/jboss-el/1.0_02.CR6/jboss-el-1.0_02.CR6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jboss/seam/jboss-seam-ui/2.3.0.CR1/jboss-seam-ui-2.3.0.CR1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jboss/seam/jboss-seam-debug/2.3.0.CR1/jboss-seam-debug-2.3.0.CR1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/richfaces/ui/richfaces-components-ui/4.2.2.Final/richfaces-components-ui-4.2.2.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/richfaces/ui/richfaces-components-api/4.2.2.Final/richfaces-components-api-4.2.2.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/richfaces/core/richfaces-core-api/4.2.2.Final/richfaces-core-api-4.2.2.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/12.0/guava-12.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/richfaces/core/richfaces-core-impl/4.2.2.Final/richfaces-core-impl-4.2.2.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sourceforge/cssparser/cssparser/0.9.5/cssparser-0.9.5.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/w3c/css/sac/1.3/sac-1.3.jar"/>
+</classpath>
