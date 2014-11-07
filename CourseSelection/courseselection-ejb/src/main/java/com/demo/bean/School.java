@@ -22,7 +22,11 @@ public class School implements Serializable {
 	private static final long serialVersionUID = 4818188553954060418L;
 
 	private int id;
+	
+	//Name of this school
 	private String name;
+	
+	//whic campus
 	private String location;
 
 	public School() {

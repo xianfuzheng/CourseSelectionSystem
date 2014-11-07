@@ -24,12 +24,19 @@ import com.demo.bean.Course;
 @Scope(ScopeType.SESSION)
 @Restrict("#{identity.loggedIn}")
 public class CourseSearchingAction implements CourseSearching {
+
 	@PersistenceContext
 	private EntityManager em;
 
+	// search string
 	private String searchString;
+
+	// page size
 	private int pageSize = 10;
-	private int page;
+
+	// Default page number
+	private int page = 0;
+
 	private boolean nextPageAvailable;
 
 	@DataModel
@@ -45,8 +52,15 @@ public class CourseSearchingAction implements CourseSearching {
 		queryCourses();
 	}
 
+	/**
+	 * Query according course name ,teacher and time
+	 * 
+	 * Calculate nextPageAvailable
+	 */
 	private void queryCourses() {
-		List<Course> results = em.createQuery("select h from Course h ")
+		List<Course> results = em
+				.createQuery(
+						"select h from Course h where h.name like #{pattern} or h.teacher like #{pattern} or h.courseTime like #{pattern}")
 				.setMaxResults(pageSize + 1).setFirstResult(page * pageSize)
 				.getResultList();
 
@@ -71,6 +85,10 @@ public class CourseSearchingAction implements CourseSearching {
 		this.pageSize = pageSize;
 	}
 
+	/**
+	 * Escape the search string Prevent sql-injection-attack
+	 * 
+	 */
 	@Factory(value = "pattern", scope = ScopeType.EVENT)
 	public String getSearchPattern() {
 		return searchString == null ? "%" : '%' + searchString.trim().replace(

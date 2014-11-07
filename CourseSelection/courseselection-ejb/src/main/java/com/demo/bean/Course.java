@@ -23,10 +23,20 @@ public class Course implements Serializable {
 	private static final long serialVersionUID = 4818188553954060411L;
 
 	private int id;
+
+	// Belong to which shool
 	private School school;
+
+	// Name of course ,such as 'Microeconomoy'
 	private String name;
+
+	// Name of teacher
 	private String teacher;
+
+	// the class time for this course
 	private String courseTime;
+
+	// credit for this course
 	private int credit;
 
 	public Course() {

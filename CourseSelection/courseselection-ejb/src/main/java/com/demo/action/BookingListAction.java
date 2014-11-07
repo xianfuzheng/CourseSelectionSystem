@@ -58,23 +58,26 @@ public class BookingListAction implements BookingList, Serializable {
 				.setParameter("username", user.getUsername()).getResultList();
 	}
 
+	public StudentBooking getBooking() {
+		return booking;
+	}
+
 	public void cancel() {
 		log.info("Cancel booking: #{bookingList.booking.id} for #{user.username}");
 		StudentBooking cancelled = em.find(StudentBooking.class,
 				booking.getId());
+
 		if (cancelled != null)
 			em.remove(cancelled);
+
 		getBookings();
 		FacesMessages.instance()
 				.add("Booking cancelled for confirmation number #0",
 						booking.getId());
 	}
 
-	public StudentBooking getBooking() {
-		return booking;
-	}
-
 	@Remove
 	public void destroy() {
+		log.debug(this + " has been destroyed");
 	}
 }

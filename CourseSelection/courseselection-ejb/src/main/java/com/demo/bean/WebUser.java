@@ -23,6 +23,8 @@ public class WebUser implements Serializable {
 	private String username;
 	private String password;
 	private String name;
+	
+	//role:Student,Admin
 	private String role;
 
 	public WebUser() {
