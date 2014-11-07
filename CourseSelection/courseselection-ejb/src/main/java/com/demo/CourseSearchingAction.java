@@ -1,5 +1,4 @@
-//$Id: HotelSearchingAction.java 8998 2008-09-16 03:08:11Z shane.bryzak@jboss.com $
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +16,10 @@ import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.security.Restrict;
 
 @Stateful
-@Name("hotelSearch")
+@Name("courseSearch")
 @Scope(ScopeType.SESSION)
 @Restrict("#{identity.loggedIn}")
-public class HotelSearchingAction implements HotelSearching
+public class CourseSearchingAction implements CourseSearching
 {
     @PersistenceContext
     private EntityManager em;
@@ -31,32 +30,34 @@ public class HotelSearchingAction implements HotelSearching
     private boolean nextPageAvailable;
    
     @DataModel
-    private List<Hotel> hotels;
+    private List<Course> courses;
    
     public void find() 
     {
         page = 0;
-        queryHotels();
+        queryCourses();
     }
 
     public void nextPage() 
     {
         page++;
-        queryHotels();
+        queryCourses();
     }
     
-    private void queryHotels() {
-        List<Hotel> results = em.createQuery("select h from Hotel h where lower(h.name) like #{pattern} or lower(h.city) like #{pattern} or lower(h.zip) like #{pattern} or lower(h.address) like #{pattern}")
+    private void queryCourses() {
+        List<Course> results = em.createQuery("select h from Course h ")
                                 .setMaxResults(pageSize+1)
                                 .setFirstResult(page * pageSize)
                                 .getResultList();
         
         nextPageAvailable = results.size() > pageSize;
+
+		
         if (nextPageAvailable) 
         {
-            hotels = new ArrayList<Hotel>(results.subList(0,pageSize));
+            courses = new ArrayList<Course>(results.subList(0,pageSize));
         } else {
-            hotels = results;
+            courses = results;
         }
     }
 
@@ -77,7 +78,7 @@ public class HotelSearchingAction implements HotelSearching
    public String getSearchPattern()
    {
       return searchString==null ? 
-            "%" : '%' + searchString.toLowerCase().replace('*', '%') + '%';
+            "%" : '%' + searchString.trim().replace('*', '%') + '%';
    }
    
    public String getSearchString()

@@ -1,5 +1,4 @@
-//$Id: User.java 5579 2007-06-27 00:06:49Z gavin $
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import static org.jboss.seam.ScopeType.SESSION;
 
@@ -16,33 +15,28 @@ import org.jboss.seam.annotations.Scope;
 @Entity
 @Name("user")
 @Scope(SESSION)
-@Table(name="Customer")
-public class User implements Serializable
+@Table(name="web_users")
+public class WebUser implements Serializable
 {
    private static final long serialVersionUID = 4818188553954060410L;
    
    private String username;
    private String password;
    private String name;
+   private String role;
    
-   public User(String name, String password, String username)
-   {
-      this.name = name;
-      this.password = password;
-      this.username = username;
-   }
    
-   public User() {}
+   public WebUser() {}
 
    @NotNull
    @Size(max=100)
-   public String getName()
+   public String getRole()
    {
-      return name;
+      return role;
    }
-   public void setName(String name)
+   public void setRole(String role)
    {
-      this.name = name;
+      this.role = role;
    }
    
    @NotNull
@@ -58,7 +52,6 @@ public class User implements Serializable
    
    @Id
    @Size(min=4, max=15)
-   @Pattern(regexp="^\\w*$", message="not a valid username")
    public String getUsername()
    {
       return username;
@@ -68,9 +61,21 @@ public class User implements Serializable
       this.username = username;
    }
    
+
+   @Size(min=4, max=15)
+   public String getName()
+   {
+      return name;
+   }
+   public void setName(String name)
+   {
+      this.name = name;
+   }
+
+
    @Override
    public String toString() 
    {
-      return "User(" + username + ")";
+      return "User(" + username + ","+role+")";
    }
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view contentType="text/html"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<html>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>JBoss Suites: Seam Framework</title>
+	<link href="css/screen.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<body class="iframe">
+
+<div id="document" class="iframe">
+	<div id="container" class="iframe">
+		<div class="section">
+			<h1>Search A Course</h1>
+		</div>
+
+		<div id="searchCourseDiv">
+			<h:form id="searchCriteria">
+				<fieldset>
+			       <h:inputText id="searchString" value="#{courseSearch.searchString}" style="width: 165px;">
+				<a:ajax event="keyup" render="searchResults" listener="#{courseSearch.find}"/>
+			       </h:inputText>                     
+			       &#160;
+				   <a:commandButton id="findCourses" value="Find Courses" actionListener="#{courseSearch.find}"  render="searchResults"/>
+			       &#160;
+			       <a:status id="status">
+				  <f:facet id="StartStatus" name="start">
+				     <h:graphicImage id="SpinnerGif" value="/img/spinner.gif"/>
+				  </f:facet>
+			       </a:status>
+				   <br/>
+			       
+			    </fieldset>
+			    </h:form>
+		</div>
+		
+		<a:outputPanel id="searchResults">
+		  <div class="section">
+			<h:outputText id="NoCourseFoundMessage" value="No Course Found" rendered="#{courses != null and courses.rowCount==0}"/>
+			<h:dataTable id="courses" value="#{courses}" var="course" rendered="#{courses.rowCount>0}">
+				<h:column id="column1">
+					<f:facet id="NameFacet" name="header">Name</f:facet>
+					#{course.name}
+				</h:column>
+				<h:column id="column2">
+					<f:facet id="TimeFacet" name="header">Time</f:facet>
+					#{course.courseTime}
+				</h:column>
+				<h:column id="column3">
+					<f:facet id="TeacherFacet" name="header">Teacher</f:facet>
+					#{course.teacher}
+				</h:column> 
+				<h:column id="column4">
+					<f:facet id="CreditFacet" name="header">Credit</f:facet>
+					#{course.credit}
+				</h:column>
+				<h:column id="column5">
+					<f:facet id="ActionFacet" name="header">Action</f:facet>
+					<s:link id="bookCourse" value="Select" action="#{courseBooking.selectCourse(course)}" />
+
+				</h:column>
+			</h:dataTable>
+			<s:link id="MoreResultsLink" value="More results" action="#{courseSearch.nextPage}" rendered="#{courseSearch.nextPageAvailable}"/>
+		  </div>
+		</a:outputPanel>
+		<!-- main content ends-->
+	</div>	
+</div>
+<!-- document ends-->
+
+</body>
+
+</html>
+</f:view>

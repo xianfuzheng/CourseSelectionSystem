@@ -1,5 +1,4 @@
-//$Id: BookingList.java 5579 2007-06-27 00:06:49Z gavin $
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import javax.ejb.Local;
 
@@ -7,7 +6,7 @@ import javax.ejb.Local;
 public interface BookingList
 {
    public void getBookings();
-   public Booking getBooking();
+   public StudentBooking getBooking();
    public void cancel();
    public void destroy();
 }

@@ -54,6 +54,20 @@
         </navigation>
         
     </page>
+
+	<page view-id="/my_courses.xhtml" 
+          login-required="true">
+    
+        <navigation from-action="#{hotelBooking.selectHotel(hot)}">
+            <redirect view-id="/hotel.xhtml"/>
+        </navigation>
+        
+        <navigation from-action="#{bookingList.cancel}">
+            <redirect/>
+        </navigation>
+        
+    </page>
+
     
     <page view-id="/hotel.xhtml" 
           conversation-required="true" 

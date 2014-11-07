@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources xmlns="http://www.jboss.org/ironjacamar/schema">
     <datasource 
-        jndi-name="java:/bookingDatasource" 
+        jndi-name="java:/courseselectionDatasource" 
         enabled="true" 
-        use-java-context="true" pool-name="bookingdb">
-        <connection-url>jdbc:h2:mem:bookingdb;DB_CLOSE_DELAY=-1</connection-url>
+        use-java-context="true" pool-name="courseselectiondb">
+        <connection-url>jdbc:h2:mem:courseselectiondb;DB_CLOSE_DELAY=-1</connection-url>
         <driver>h2</driver>
         <security>
             <user-name>sa</user-name>

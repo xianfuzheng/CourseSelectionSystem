@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view contentType="text/html"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<html>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>JBoss Suites: Seam Framework</title>
+	<link href="css/screen.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<body class="iframe">
+
+<div id="document" class="iframe">
+	<div id="container" class="iframe">
+		<div class="section">
+			<h1>Your booked courses</h1>
+		</div>
+
+		<!-- main content -->
+		<div class="section">
+		  <h:form id="bookings">
+			<h:outputText id="NoBookingsFoundMessage" value="No Bookings Found" rendered="#{bookings.rowCount==0}"/>
+			<h:dataTable id="bookings" value="#{bookings}" var="book" rendered="#{bookings.rowCount>0}">
+				<h:column id="column1">
+					<f:facet id="NameFacet" name="header">Name</f:facet>
+					#{book.course.name}
+				</h:column>
+				<h:column id="column2">
+					<f:facet id="AddressFacet" name="header">Teacher</f:facet>
+					#{book.course.teacher}
+				</h:column>
+				<h:column id="column3">
+					<f:facet id="CityStateFacet" name="header">Time</f:facet>
+					#{book.course.courseTime}
+				</h:column>
+				<h:column id="column7">
+					<f:facet id="ActionFacet" name="header">Action</f:facet>
+					<h:commandLink id="cancel" value="Cancel" action="#{bookingList.cancel}"/>
+				</h:column>
+			</h:dataTable>
+		  </h:form>
+		</div>
+		<!-- main content ends-->
+	</div>	
+</div>
+<!-- document ends-->
+
+</body>
+
+</html>
+</f:view>

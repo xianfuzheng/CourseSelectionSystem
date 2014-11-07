@@ -1,4 +1,4 @@
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import javax.ejb.Local;
 

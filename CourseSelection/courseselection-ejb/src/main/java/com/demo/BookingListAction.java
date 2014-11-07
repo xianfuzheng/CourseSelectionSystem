@@ -1,5 +1,4 @@
-//$Id: BookingListAction.java 8748 2008-08-20 12:08:30Z pete.muir@jboss.org $
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import static javax.ejb.TransactionAttributeType.REQUIRES_NEW;
 import static org.jboss.seam.ScopeType.SESSION;
@@ -38,21 +37,21 @@ public class BookingListAction implements BookingList, Serializable
    private EntityManager em;
    
    @In
-   private User user;
+   private WebUser user;
    
    @DataModel
-   private List<Booking> bookings;
+   private List<StudentBooking> bookings;
+
    @DataModelSelection 
-   private Booking booking;
+   private StudentBooking booking;
    
    @Logger 
    private Log log;
    
    @Factory
-   @Observer("bookingConfirmed")
    public void getBookings()
    {
-      bookings = em.createQuery("select b from Booking b where b.user.username = :username order by b.checkinDate")
+      bookings = em.createQuery("select b from StudentBooking b where b.user.username = :username order by b.bookTime")
             .setParameter("username", user.getUsername())
             .getResultList();
    }
@@ -60,13 +59,13 @@ public class BookingListAction implements BookingList, Serializable
    public void cancel()
    {
       log.info("Cancel booking: #{bookingList.booking.id} for #{user.username}");
-      Booking cancelled = em.find(Booking.class, booking.getId());
+      StudentBooking cancelled = em.find(StudentBooking.class, booking.getId());
       if (cancelled!=null) em.remove( cancelled );
       getBookings();
       FacesMessages.instance().add("Booking cancelled for confirmation number #0", booking.getId());
    }
    
-   public Booking getBooking()
+   public StudentBooking getBooking()
    {
       return booking;
    }

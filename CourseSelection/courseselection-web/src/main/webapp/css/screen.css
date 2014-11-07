@@ -24,6 +24,9 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+body.iframe{
+	width:100%;
+}
 .label {
 	font-weight: bold;
 	color: #5E5147;
@@ -49,39 +52,74 @@ li {
 fieldset {
 	border: 0;
 }
+
+.section{
+	margin:5px;
+}
+
 /* Layout
 ----------------------------------------------- */
 #document {
 	padding: 0 1px;
-	background: #fff url(../img/bg.gif) 0 0 repeat-y;
-	float: left;
+	background-color: #fff;	float: left;
 	border-bottom: 1px solid #C3BBB6;
 }
-#header {
-	float: left;
-	width: 758px;
-	height: 46px;
-	background: url(../img/hdr.bg.gif) 0 0 repeat-x;
+
+#document.iframe {
+	padding: 10px;
+	width:100%;
+	height:100%;
 }
+
 #container {
 	float: left;
 	width: 758px;
-	background: url(../img/hdr.bar.jpg) 0 0 repeat-x;
+	height: 400px;
 }
-#sidebar {
-	float: left;
-	width: 190px;
-	margin-top: 96px;
-	padding: 20px 10px 0 10px;
-	background: url(../img/sdb.bg.gif) 0 0 no-repeat;
+
+#container.iframe{
+	width: 100%;
+	height: 100%;
 }
-#content {
-	float: left;
-	width: 548px;
-	margin-top: 75px;
-	padding-top: 5px;
-	background: #fff url(../img/cnt.bg.gif) 0 0 repeat-x;
+
+#headerDiv {
+	position:relative;
+	width: 640px;
+	height: 40px;
+	left:50%;
+	margin-left:-320px;
+	margin-top:50px;
+	font-size:xx-large;
 }
+
+#loginDiv {
+	position:relative;
+	width: 300px;
+	height: 200px;
+	left:50%;
+	margin-top:50px;
+	margin-left:-150px;
+}
+
+#loginDiv label{
+	display:inline-block;
+	width:120px;
+}
+
+#loginFormDiv {
+	width: 400px;
+	height: 180px;
+}
+
+#noteDiv {
+	width: 400px;
+	height: 50px;
+	margin-left:-75px;
+}
+#header {
+	height:50px
+}
+
 #footer {
 	clear: both;
 	margin-top: 40px;
@@ -92,6 +130,21 @@ fieldset {
 	width: 718px;
 	text-align: right;
 }
+
+#sidebar{
+	float:left;
+	width:200px;
+	margin-right:20px;
+}
+
+
+#content{
+	position:relative;
+	float:left;
+	width:500px;
+	height:400px
+}
+
 /* General
 ----------------------------------------------- */
 input[type="submit"], input[type="button"] {
@@ -132,7 +185,7 @@ input[type="submit"], input[type="button"] {
 	width: 360px;
 	text-align: left;
 }
-/* Sidebar
+/* loginDiv
 ----------------------------------------------- */
 .notes {
 	text-align: center;
@@ -164,18 +217,19 @@ input[type="submit"], input[type="button"] {
 	text-align: center;
 	padding: 5px 0;
 	clear: both;
+	margin-top:20px;
 }
-#sidebar p {
+#loginDiv p {
 	font-size: small;
 	color: #8B7869;
 	line-height: 150%;
 	padding-bottom: 10px;
 }
-#sidebar li {
+#loginDiv li {
 	font-size: small;
 	color: #8B7869;
 }
-#sidebar h1 {
+#loginDiv h1 {
 	line-height: normal;
 	font-weight: bold;
 	font-size: small;
@@ -185,73 +239,13 @@ input[type="submit"], input[type="button"] {
 	color: #362F2D;
 }
 */
-/* Content
------------------------------------------------ */
-#content .section {
-	float: left;
-	width: 518px;
-	padding: 15px 15px 0 15px;
-}
-#content .section h1 {
-	font-family: "Trebuchet MS", Arial, sans-serif;
-	line-height: normal;
-	font-weight: normal;
-	font-size: large;
-}
-#content .section p {
-	line-height: 150%;
-	padding: 10px 0;
-	font-size: small;
-}
-#content table {
-	width: 100%;
-	border: 1px solid #D2C9C4;
-	border-collapse: collapse;
-}
-#content table caption {
-	padding-bottom: 6px;
-	text-align: left;
-	font-weight: bold;
-}
-#content table thead th {
-	border-left: 1px solid #D2C9C4;
-	background: #fff url(../img/th.bg.gif) 0 100% repeat-x;	
-	border-bottom: 1px solid #D2C9C4;
-	padding: 6px;
-	text-align: left;
-	font-size: small;
-}
-#content table tbody td {
-	border-left: 1px solid #E4DBD5;
-	padding: 4px;
-	border-bottom: 1px solid #D2C9C4;
-	font-size: small;
-}
-#content dt {
-	font-weight: bold;
-	float: left;
-	width: 33%;
-}
-#content dd {
-	padding-left: 10px;
-	float: left;
-	width: 66%;
-}
-#content table.radio {
-	border: 0px;
-}
-#content .input table,
-#content .input tbody tr td,
-#content table.radio tbody tr td {
-	border: 0px;
-	border-left: 0px;
-	border-bottom: 0px;
-}
+
 /* Header
 ----------------------------------------------- */
 #title {
 	float: left;
-	padding: 1px 0 6px 15px;
+	padding: 8px 0 6px 15px;
+	font-size:xx-large;
 }
 #status {
 	color: #C7B299;
@@ -263,18 +257,108 @@ input[type="submit"], input[type="button"] {
 	padding-top: 14px;
 	padding-right: 15px;
 }
+
 #status a {
 	color: #C7B299;
 	text-decoration: none;
 }
-/* Homepage Modifications
+
+
+/* container
 ----------------------------------------------- */
-#pgHome #container {
-	background: url(../img/hdr.ad.jpg) 0 0 repeat-x;
+#container .section {
+	float: left;
+	width: 96%;
+	padding: 5px 5px 0 5px;
 }
-#pgHome #sidebar {
-	margin-top: 207px;
+
+#container .section h1 {
+	font-family: "Trebuchet MS", Arial, sans-serif;
+	line-height: normal;
+	font-weight: normal;
+	font-size: large;
 }
-#pgHome #content {
-	margin-top: 183px;
+#container .section p {
+	line-height: 150%;
+	padding: 10px 0;
+	font-size: small;
+}
+#container table {
+	width: 100%;
+	border: 1px solid #D2C9C4;
+	border-collapse: collapse;
+}
+#container table caption {
+	padding-bottom: 6px;
+	text-align: left;
+	font-weight: bold;
+}
+#container table thead th {
+	border-left: 1px solid #D2C9C4;
+	background: #fff url(../img/th.bg.gif) 0 100% repeat-x;	
+	border-bottom: 1px solid #D2C9C4;
+	padding: 6px;
+	text-align: left;
+	font-size: small;
+}
+#container table tbody td {
+	border-left: 1px solid #E4DBD5;
+	padding: 4px;
+	border-bottom: 1px solid #D2C9C4;
+	font-size: small;
+}
+#container dt {
+	font-weight: bold;
+	float: left;
+	width: 33%;
+}
+#container dd {
+	padding-left: 10px;
+	float: left;
+	width: 66%;
+}
+#container table.radio {
+	border: 0px;
+}
+#container .input table,
+#container .input tbody tr td,
+#container table.radio tbody tr td {
+	border: 0px;
+	border-left: 0px;
+	border-bottom: 0px;
+}
+
+
+/* Menu
+----------------------------------------------- */
+.menuBar{
+	background-color:#f9f9f9;
+	border-bottom:1px solid #cfcfcf;
+	height:50px;
+	font-size:larger;
+	padding-left:10px;
+	line-height:50px;
+}
+
+.menuItem{
+	height:30px;
+	padding-left:20px;
+	line-height:30px;
+	text-decoration:underline;
+}
+
+.menuItem:hover{
+	background-color: #f9f9f9;
+	text-decoration:none;
+}
+
+/* Usage
+----------------------------------------------- */
+.usageTitle{
+	font-size:18px;
+	margin:10px;
+}
+
+.usageDesc{
+	margin-left:10px;
 }

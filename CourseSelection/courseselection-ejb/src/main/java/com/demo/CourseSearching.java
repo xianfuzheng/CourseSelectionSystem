@@ -1,10 +1,9 @@
-//$Id: HotelSearching.java 5579 2007-06-27 00:06:49Z gavin $
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import javax.ejb.Local;
 
 @Local
-public interface HotelSearching
+public interface CourseSearching
 {
    public int getPageSize();
    public void setPageSize(int pageSize);

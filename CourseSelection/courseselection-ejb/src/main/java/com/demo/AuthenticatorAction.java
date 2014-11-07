@@ -1,4 +1,4 @@
-package org.jboss.seam.example.booking;
+package com.demo;
 
 import static org.jboss.seam.ScopeType.SESSION;
 
@@ -22,19 +22,18 @@ public class AuthenticatorAction
 
     @In(required=false)   
     @Out(required=false, scope = SESSION)
-    private User user;
+    private WebUser user;
    
     public boolean authenticate()
     {
-	List results = em.createQuery("select u from User u where u.username=#{identity.username} and u.password=#{identity.password}")
-                         .getResultList();
-      
-	if (results.size()==0) {
-	    return false;
-	} else {
-	    user = (User) results.get(0);
-	    return true;
-	}
-    }
-    
+		List results = em.createQuery("select u from WebUser u where u.username=#{identity.username} and u.password=#{identity.password}")
+							 .getResultList();
+		  
+		if (results.size()==0) {
+			return false;
+		} else {
+			user = (WebUser) results.get(0);
+			return true;
+		}
+   }    
 }
