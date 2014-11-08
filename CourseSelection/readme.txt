@@ -1,19 +1,42 @@
-Seam Booking Example
+About this system
 ====================
 
-This example demonstrates the use of Seam in a Java EE 6 environment.
-Transaction and persistence context management is handled by the
-EJB container. This example runs on JBoss AS as an EAR
+This system will be created by a set of backend and frontend technologies, and it is used to demonstrate my skills in Java/J2EE/Javascript.
 
-To deploy the example to JBossAS, follow these steps:
+* Serverside technologies:
+   J2EE Entity Bean
+   Spring
+   JBoss Seam
+   RESTFul API
+   WEB Services
 
-* In the example root directory run:
+* Frontend technologies:
+   jQuery
+   AngularJS
+   CSS/HTML
 
-    mvn clean install
 
-* In the booking-ear directory run:
+To build EAR package of this demo site:
 
-    mvn jboss-as:deploy
+* In the root directory run:
 
-* Open this URL in a web browser: http://localhost:8080/seam-booking
+    mvn -DskipTests=true clean package
 
+* Deploy courseselection-ear/target/courseselection.ear:
+
+
+Demo user account:stu001/foobar stu002/foobar
+
+
+Ongoing:
+
+* Administrator Panel:
+  1) School management
+  2) Course management
+  3) Student management
+  4) Booking report
+  5) Recommendation based on student profile (major,booked course)
+
+ 
+Feedback and suggestion:
+  Please feel free to contact me at zhengxianfu#gmail.com
