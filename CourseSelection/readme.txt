@@ -16,6 +16,9 @@ This system will be created by a set of backend and frontend technologies, and i
    CSS/HTML
 
 
+Build and deploy
+===================
+
 To build EAR package of this demo site:
 
 * In the root directory run:
@@ -28,8 +31,8 @@ To build EAR package of this demo site:
 Demo user account:stu001/foobar stu002/foobar
 
 
-Ongoing:
-
+Plans
+===================
 * Administrator Panel:
   1) School management
   2) Course management
@@ -38,5 +41,6 @@ Ongoing:
   5) Recommendation based on student profile (major,booked course)
 
 
-Feedback and suggestion:
+Feedback and suggestion
+=======================
   Please feel free to contact me at zhengxianfu#gmail.com
