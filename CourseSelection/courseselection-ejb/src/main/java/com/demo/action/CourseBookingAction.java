@@ -1,7 +1,6 @@
 package com.demo.action;
 
 import static javax.persistence.PersistenceContextType.EXTENDED;
-import intf.CourseBooking;
 
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
@@ -18,6 +17,7 @@ import org.jboss.seam.log.Log;
 import com.demo.bean.Course;
 import com.demo.bean.StudentBooking;
 import com.demo.bean.WebUser;
+import com.demo.intf.CourseBooking;
 
 @Stateful
 @Name("courseBooking")

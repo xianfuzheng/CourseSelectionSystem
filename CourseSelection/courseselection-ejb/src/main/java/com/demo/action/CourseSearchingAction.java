@@ -1,7 +1,5 @@
 package com.demo.action;
 
-import intf.CourseSearching;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +16,7 @@ import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.security.Restrict;
 
 import com.demo.bean.Course;
+import com.demo.intf.CourseSearching;
 
 @Stateful
 @Name("courseSearch")

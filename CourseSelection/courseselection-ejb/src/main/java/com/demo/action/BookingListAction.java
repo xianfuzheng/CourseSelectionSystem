@@ -2,7 +2,6 @@ package com.demo.action;
 
 import static javax.ejb.TransactionAttributeType.REQUIRES_NEW;
 import static org.jboss.seam.ScopeType.SESSION;
-import intf.BookingList;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +25,7 @@ import org.jboss.seam.log.Log;
 
 import com.demo.bean.StudentBooking;
 import com.demo.bean.WebUser;
+import com.demo.intf.BookingList;
 
 @Stateful
 @Scope(SESSION)

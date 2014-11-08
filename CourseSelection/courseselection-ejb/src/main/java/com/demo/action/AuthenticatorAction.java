@@ -1,7 +1,6 @@
 package com.demo.action;
 
 import static org.jboss.seam.ScopeType.SESSION;
-import intf.Authenticator;
 
 import java.util.List;
 
@@ -16,6 +15,7 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.log.Log;
 
 import com.demo.bean.WebUser;
+import com.demo.intf.Authenticator;
 
 /**
  * Action invoked by framework to authenticate user Put WebUser object into
