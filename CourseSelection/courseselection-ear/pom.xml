@@ -50,7 +50,7 @@
     </dependencies>
 
     <build>
-        <finalName>seam-courseselection</finalName>
+        <finalName>courseselection</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

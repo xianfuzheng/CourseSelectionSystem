@@ -31,24 +31,67 @@ public class CourseSearchingAction implements CourseSearching {
 	private String searchString;
 
 	// page size
-	private int pageSize = 10;
+	private int pageSize = 5;
 
 	// Default page number
-	private int page = 0;
+	private int page = 1;
+
+	private int totalPage = 1;
 
 	private boolean nextPageAvailable;
+	private boolean prePageAvailable;
 
+	//user start to search
+	private boolean isStartFind = false;
+	
+	private List<Course> queryCourses;
+	
+	
 	@DataModel
 	private List<Course> courses;
 
 	public void find() {
-		page = 0;
+		isStartFind = true;
+		
+		page = 1;
 		queryCourses();
+		getPageResult();
 	}
 
 	public void nextPage() {
 		page++;
-		queryCourses();
+		getPageResult();
+	}
+	
+	public void prePage() {
+		page--;
+		getPageResult();
+	}
+	
+	/**
+	 * Must check the page range
+	 */
+	private void getPageResult(){
+		if(page <=1 ){
+			page =1;
+		}
+		
+		if(page>totalPage){
+			page = totalPage;
+		}
+		
+		prePageAvailable = page >1;
+		nextPageAvailable = totalPage > page;
+
+		int totalCount = queryCourses.size();
+		
+		int start = (page-1)*pageSize;
+		int end = page*pageSize;
+		if(end >= totalCount){
+			end = totalCount-1;
+		}
+		
+		courses = new ArrayList<Course>(queryCourses.subList(start, end));
 	}
 
 	/**
@@ -57,23 +100,32 @@ public class CourseSearchingAction implements CourseSearching {
 	 * Calculate nextPageAvailable
 	 */
 	private void queryCourses() {
-		List<Course> results = em
+		queryCourses = em
 				.createQuery(
 						"select h from Course h where h.name like #{pattern} or h.teacher like #{pattern} or h.courseTime like #{pattern}")
-				.setMaxResults(pageSize + 1).setFirstResult(page * pageSize)
 				.getResultList();
-
-		nextPageAvailable = results.size() > pageSize;
-
-		if (nextPageAvailable) {
-			courses = new ArrayList<Course>(results.subList(0, pageSize));
-		} else {
-			courses = results;
+		
+		int totalCount = queryCourses.size();
+		
+		totalPage = totalCount/pageSize;
+		
+		if(totalCount- totalPage*pageSize >0){
+			totalPage++;
 		}
+
 	}
 
+
+	public boolean isStartFind() {
+		return isStartFind;
+	}
+	
 	public boolean isNextPageAvailable() {
 		return nextPageAvailable;
+	}
+	
+	public boolean isPrePageAvailable() {
+		return prePageAvailable;
 	}
 
 	public int getPageSize() {
@@ -101,8 +153,16 @@ public class CourseSearchingAction implements CourseSearching {
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
 	}
+	
+	public int getPage() {
+		return page;
+	}
 
+	public int getTotalPage() {
+		return totalPage;
+	}
 	@Remove
 	public void destroy() {
 	}
+
 }

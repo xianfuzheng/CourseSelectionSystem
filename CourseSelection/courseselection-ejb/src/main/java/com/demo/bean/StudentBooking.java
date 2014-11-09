@@ -7,9 +7,11 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 
 import org.jboss.seam.annotations.Name;
@@ -22,9 +24,10 @@ import org.jboss.seam.annotations.Scope;
  *
  */
 @Entity
-@Name("studentBooking")
+@Name("booking")
 @Scope(SESSION)
 @Table(name = "student_booking")
+@TableGenerator(name="tabStudentBookingIDGenerator", initialValue=5, allocationSize=500)
 public class StudentBooking implements Serializable {
 
 	private static final long serialVersionUID = 4818188553954060410L;
@@ -45,7 +48,7 @@ public class StudentBooking implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="tabStudentBookingIDGenerator")
 	public int getId() {
 		return id;
 	}

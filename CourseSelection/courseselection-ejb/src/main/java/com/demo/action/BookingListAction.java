@@ -12,7 +12,6 @@ import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
@@ -23,6 +22,7 @@ import org.jboss.seam.annotations.security.Restrict;
 import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.log.Log;
 
+import com.demo.bean.Course;
 import com.demo.bean.StudentBooking;
 import com.demo.bean.WebUser;
 import com.demo.intf.BookingList;
@@ -50,32 +50,32 @@ public class BookingListAction implements BookingList, Serializable {
 	@Logger
 	private Log log;
 
-	@Factory
-	public void getBookings() {
+	public void getBookings() {	
 		bookings = em
-				.createQuery(
-						"select b from StudentBooking b where b.user.username = :username order by b.bookTime")
+				.createQuery("select b from StudentBooking b where b.user.username = :username order by b.bookTime")
 				.setParameter("username", user.getUsername()).getResultList();
 	}
 
 	public StudentBooking getBooking() {
 		return booking;
 	}
-
-	public void cancel() {
+	
+	
+	public void cancelCourse(Course course){
+		
 		log.info("Cancel booking: #{bookingList.booking.id} for #{user.username}");
 		StudentBooking cancelled = em.find(StudentBooking.class,
 				booking.getId());
-
+		log.info("cancelled="+cancelled);
+		
 		if (cancelled != null)
 			em.remove(cancelled);
-
+		
 		getBookings();
-		FacesMessages.instance()
-				.add("Booking cancelled for confirmation number #0",
-						booking.getId());
+		
+		FacesMessages.instance().add("Cancelled successfully");
 	}
-
+	
 	@Remove
 	public void destroy() {
 		log.debug(this + " has been destroyed");

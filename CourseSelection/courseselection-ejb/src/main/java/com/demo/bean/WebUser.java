@@ -24,6 +24,7 @@ public class WebUser implements Serializable {
 	private String password;
 	private String name;
 	
+	
 	//role:Student,Admin
 	private String role;
 
@@ -64,6 +65,7 @@ public class WebUser implements Serializable {
 	public String getName() {
 		return name;
 	}
+	
 
 	public void setName(String name) {
 		this.name = name;
@@ -73,4 +75,6 @@ public class WebUser implements Serializable {
 	public String toString() {
 		return "User(" + username + "," + role + ")";
 	}
+
+	
 }

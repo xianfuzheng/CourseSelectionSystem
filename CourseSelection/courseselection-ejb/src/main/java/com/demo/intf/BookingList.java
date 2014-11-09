@@ -2,6 +2,7 @@ package com.demo.intf;
 
 import javax.ejb.Local;
 
+import com.demo.bean.Course;
 import com.demo.bean.StudentBooking;
 
 /**
@@ -28,7 +29,7 @@ public interface BookingList {
 	/**
 	 * Cancel current operating booking
 	 */
-	public void cancel();
+	public void cancelCourse(Course course);
 	
 	/**
 	 * Clean up function ,should be invoked by framework

@@ -12,6 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>JBoss Suites: Seam Framework</title>
 	<link href="css/screen.css" rel="stylesheet" type="text/css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 </h:head>
 
 <body class="iframe">
@@ -21,7 +22,12 @@
 		<div class="section">
 			<h1>Search A Course</h1>
 		</div>
-<h:messages id="messages" globalOnly="true"/>
+
+		<h:form>
+			<a:jsFunction name="initCourseList" actionListener="#{courseSearch.find}" render="searchResults" />
+		</h:form>
+
+		<h:messages id="messages" globalOnly="true"/>
 		<div id="searchCourseDiv">
 			<h:form id="searchCriteria">
 				<fieldset>
@@ -59,16 +65,27 @@
 					#{course.teacher}
 				</h:column> 
 				<h:column id="column4">
+					<f:facet id="LocationFacet" name="header">Location</f:facet>
+					#{course.school.location}
+				</h:column>
+				<h:column id="column5">
 					<f:facet id="CreditFacet" name="header">Credit</f:facet>
 					#{course.credit}
 				</h:column>
-				<h:column id="column5">
+				<h:column id="column6">
 					<f:facet id="ActionFacet" name="header">Action</f:facet>
 					<s:link id="bookCourse" value="Select" action="#{courseBooking.selectCourse(course)}" />
 
 				</h:column>
 			</h:dataTable>
-			<s:link id="MoreResultsLink" value="More results" action="#{courseSearch.nextPage}" rendered="#{courseSearch.nextPageAvailable}"/>
+			<s:link id="PrePageLink" value="Previous Page&#160;" action="#{courseSearch.prePage}" rendered="#{courseSearch.prePageAvailable}"/>
+
+			<h:outputLabel id="PageNoLabel" rendered="#{courseSearch.startFind}" value ="Page:  #{courseSearch.page}/#{courseSearch.totalPage}; "></h:outputLabel>
+
+			<s:link id="NextPageLink" value="Next Page" action="#{courseSearch.nextPage}" rendered="#{courseSearch.nextPageAvailable}"/>
+
+
+			
 		  </div>
 		</a:outputPanel>
 		<!-- main content ends-->
@@ -77,6 +94,13 @@
 <!-- document ends-->
 
 </body>
-
+<script language="javascript">
+$(function() {
+	//lazy post request
+	settimeout(function(){
+	   initCourseList();
+	   },500);
+});
+</script>
 </html>
 </f:view>

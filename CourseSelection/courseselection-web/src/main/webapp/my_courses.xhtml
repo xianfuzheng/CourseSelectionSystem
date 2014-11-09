@@ -19,10 +19,19 @@
 <div id="document" class="iframe">
 	<div id="container" class="iframe">
 		<div class="section">
-			<h1>Your booked courses</h1>
+			<h1>Your courses</h1>
 		</div>
+		
+		<h:messages id="messages" globalOnly="true"/>
+
+		<h:form>
+			<a:jsFunction name="initCourseList" actionListener="#{bookingList.getBookings}" render="searchResults" />
+		</h:form>
+
+		<script>window.onload = initCourseList;</script>
 
 		<!-- main content -->
+		<a:outputPanel id="searchResults">
 		<div class="section">
 		  <h:form id="bookings">
 			<h:outputText id="NoBookingsFoundMessage" value="No Bookings Found" rendered="#{bookings.rowCount==0}"/>
@@ -36,16 +45,17 @@
 					#{book.course.teacher}
 				</h:column>
 				<h:column id="column3">
-					<f:facet id="CityStateFacet" name="header">Time</f:facet>
+					<f:facet id="CityStateFacet" name="header">Course Time</f:facet>
 					#{book.course.courseTime}
 				</h:column>
 				<h:column id="column7">
 					<f:facet id="ActionFacet" name="header">Action</f:facet>
-					<h:commandLink id="cancel" value="Cancel" action="#{bookingList.cancel}"/>
+					<s:link id="cancelCourse" value="Cancel" action="#{bookingList.cancelCourse(course)}" />
 				</h:column>
 			</h:dataTable>
 		  </h:form>
 		</div>
+		</a:outputPanel>
 		<!-- main content ends-->
 	</div>	
 </div>

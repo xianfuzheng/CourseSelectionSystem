@@ -55,3 +55,5 @@ insert into courses (id, school_id, name, teacher, courseTime, credit) values (4
 insert into courses (id, school_id, name, teacher, courseTime, credit) values (46,6,'Introduction to Project Management','Matthew Bidwell','Monday 9am-11am',3)
 insert into courses (id, school_id, name, teacher, courseTime, credit) values (47,6,'Civil Design','Peter Cappelli','Wednesday 3pm-4pm',2)
 insert into courses (id, school_id, name, teacher, courseTime, credit) values (48,6,'Introduction to Project Management','Andrew Carton','Wednesday 5pm-6pm',1)
+insert into student_booking (id, user_username, course_id,bookTime) values (1,'stu001', 1,'2014-11-08 08:00:00')
+insert into student_booking (id, user_username, course_id,bookTime) values (2,'stu002', 2,'2014-11-08 08:00:00')

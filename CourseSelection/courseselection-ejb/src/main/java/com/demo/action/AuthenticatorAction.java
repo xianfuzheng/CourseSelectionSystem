@@ -54,10 +54,9 @@ public class AuthenticatorAction implements Authenticator {
 		if (results.size() == 0) {
 			return false;
 		} else {
-			
 			// put webuser object into conversation
 			Object obj = results.get(0);
-			if(user instanceof WebUser){
+			if(obj instanceof WebUser){
 				user = (WebUser) obj;
 				return true;
 			}else{

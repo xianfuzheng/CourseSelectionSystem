@@ -42,6 +42,12 @@ public interface CourseSearching {
 	public String getSearchPattern();
 	
 	public void find();
+	
+	/**
+	 * Return whether user start to search
+	 * @return
+	 */
+	public boolean isStartFind();
 
 	/**
 	 * Move record set to next page
@@ -50,11 +56,36 @@ public interface CourseSearching {
 	public void nextPage();
 	
 	/**
+	 * Move record set to pre page
+	 * Must check the range
+	 */
+	public void prePage();
+	
+	
+	/**
+	 * Return whether there is any previous page
+	 * @return 
+	 */
+	public boolean isPrePageAvailable();
+	
+	/**
 	 * Return whether there is any more page
 	 * @return 
 	 */
 	public boolean isNextPageAvailable();
-
+	
+	/**
+	 * Return current page no
+	 * @return 
+	 */
+	public int getPage();
+	
+	/**
+	 * Return total page number
+	 * @return
+	 */
+	public int getTotalPage();
+	
 	/**
 	 * Cleanup function, should be invoked by framework
 	 */
