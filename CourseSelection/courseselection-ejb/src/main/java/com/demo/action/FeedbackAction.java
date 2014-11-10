@@ -67,6 +67,7 @@ public class FeedbackAction implements Feedback {
 		feedback.setUser(user);
 		try{
 			em.persist(feedback);
+			em.flush();
 			message = "We have received your feedback, thanks for your time.";
 		}catch(Exception e){
 			message = "Failed to send, please contact system administrator.";
