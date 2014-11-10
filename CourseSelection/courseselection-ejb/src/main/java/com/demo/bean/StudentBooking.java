@@ -27,7 +27,7 @@ import org.jboss.seam.annotations.Scope;
 @Name("booking")
 @Scope(SESSION)
 @Table(name = "student_booking")
-@TableGenerator(name="tabStudentBookingIDGenerator", initialValue=5, allocationSize=500)
+@TableGenerator(name = "tabStudentBookingIDGenerator", initialValue = 5, allocationSize = 500)
 public class StudentBooking implements Serializable {
 
 	private static final long serialVersionUID = 4818188553954060410L;
@@ -48,7 +48,7 @@ public class StudentBooking implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="tabStudentBookingIDGenerator")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tabStudentBookingIDGenerator")
 	public int getId() {
 		return id;
 	}

@@ -10,10 +10,12 @@ import javax.persistence.PersistenceContext;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Factory;
+import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.security.Restrict;
+import org.jboss.seam.log.Log;
 
 import com.demo.bean.Course;
 import com.demo.intf.CourseSearching;
@@ -41,18 +43,20 @@ public class CourseSearchingAction implements CourseSearching {
 	private boolean nextPageAvailable;
 	private boolean prePageAvailable;
 
-	//user start to search
+	// user start to search
 	private boolean isStartFind = false;
-	
+
 	private List<Course> queryCourses;
-	
-	
+
 	@DataModel
 	private List<Course> courses;
 
+	@Logger
+	private Log log;
+
 	public void find() {
 		isStartFind = true;
-		
+
 		page = 1;
 		queryCourses();
 		getPageResult();
@@ -62,35 +66,38 @@ public class CourseSearchingAction implements CourseSearching {
 		page++;
 		getPageResult();
 	}
-	
+
 	public void prePage() {
 		page--;
 		getPageResult();
 	}
-	
+
 	/**
 	 * Must check the page range
 	 */
-	private void getPageResult(){
-		if(page <=1 ){
-			page =1;
+	private void getPageResult() {
+
+		log.debug("page={0} totalPage={1}", page, totalPage);
+
+		if (page <= 1) {
+			page = 1;
 		}
-		
-		if(page>totalPage){
+
+		if (page > totalPage) {
 			page = totalPage;
 		}
-		
-		prePageAvailable = page >1;
+
+		prePageAvailable = page > 1;
 		nextPageAvailable = totalPage > page;
 
 		int totalCount = queryCourses.size();
-		
-		int start = (page-1)*pageSize;
-		int end = page*pageSize;
-		if(end >= totalCount){
-			end = totalCount-1;
+
+		int start = (page - 1) * pageSize;
+		int end = page * pageSize;
+		if (end >= totalCount) {
+			end = totalCount - 1;
 		}
-		
+
 		courses = new ArrayList<Course>(queryCourses.subList(start, end));
 	}
 
@@ -104,26 +111,25 @@ public class CourseSearchingAction implements CourseSearching {
 				.createQuery(
 						"select h from Course h where h.name like #{pattern} or h.teacher like #{pattern} or h.courseTime like #{pattern}")
 				.getResultList();
-		
+
 		int totalCount = queryCourses.size();
-		
-		totalPage = totalCount/pageSize;
-		
-		if(totalCount- totalPage*pageSize >0){
+
+		totalPage = totalCount / pageSize;
+
+		if (totalCount - totalPage * pageSize > 0) {
 			totalPage++;
 		}
 
 	}
 
-
 	public boolean isStartFind() {
 		return isStartFind;
 	}
-	
+
 	public boolean isNextPageAvailable() {
 		return nextPageAvailable;
 	}
-	
+
 	public boolean isPrePageAvailable() {
 		return prePageAvailable;
 	}
@@ -153,7 +159,7 @@ public class CourseSearchingAction implements CourseSearching {
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
 	}
-	
+
 	public int getPage() {
 		return page;
 	}
@@ -161,6 +167,7 @@ public class CourseSearchingAction implements CourseSearching {
 	public int getTotalPage() {
 		return totalPage;
 	}
+
 	@Remove
 	public void destroy() {
 	}

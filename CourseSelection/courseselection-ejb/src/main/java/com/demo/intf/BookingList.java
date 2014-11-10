@@ -14,23 +14,24 @@ import com.demo.bean.StudentBooking;
  */
 @Local
 public interface BookingList {
-	
+
 	/**
-	 *  Return all booked course for current user
+	 * Return all booked course for current user
 	 */
 	public void getBookings();
-	
+
 	/**
 	 * Return current operating booking record
+	 * 
 	 * @return current operating booking record
 	 */
 	public StudentBooking getBooking();
-	
+
 	/**
 	 * Cancel current operating booking
 	 */
 	public void cancelCourse(Course course);
-	
+
 	/**
 	 * Clean up function ,should be invoked by framework
 	 */

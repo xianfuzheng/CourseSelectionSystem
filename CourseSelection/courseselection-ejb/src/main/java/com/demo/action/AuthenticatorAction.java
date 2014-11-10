@@ -37,15 +37,14 @@ public class AuthenticatorAction implements Authenticator {
 
 	@Logger
 	private Log log;
-	
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see com.demo.Authenticator#authenticate()
 	 */
 	public boolean authenticate() {
-		
+
 		List results = em
 				.createQuery(
 						"select u from WebUser u where u.username=#{identity.username} and u.password=#{identity.password}")
@@ -56,11 +55,11 @@ public class AuthenticatorAction implements Authenticator {
 		} else {
 			// put webuser object into conversation
 			Object obj = results.get(0);
-			if(obj instanceof WebUser){
+			if (obj instanceof WebUser) {
 				user = (WebUser) obj;
 				return true;
-			}else{
-				//error
+			} else {
+				// error
 				log.error("Login failed, reason :user is not a instance of WebUser.");
 				return false;
 			}

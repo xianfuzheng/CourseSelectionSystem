@@ -80,10 +80,9 @@
 			</h:dataTable>
 			<s:link id="PrePageLink" value="Previous Page&#160;" action="#{courseSearch.prePage}" rendered="#{courseSearch.prePageAvailable}"/>
 
-			<h:outputLabel id="PageNoLabel" rendered="#{courseSearch.startFind}" value ="Page:  #{courseSearch.page}/#{courseSearch.totalPage}; "></h:outputLabel>
+			<h:outputLabel id="PageNoLabel" rendered="#{courseSearch.startFind}" value ="Page:  #{courseSearch.page}/#{courseSearch.totalPage} "></h:outputLabel>
 
 			<s:link id="NextPageLink" value="Next Page" action="#{courseSearch.nextPage}" rendered="#{courseSearch.nextPageAvailable}"/>
-
 
 			
 		  </div>

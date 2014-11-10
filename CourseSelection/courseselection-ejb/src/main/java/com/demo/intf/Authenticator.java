@@ -7,10 +7,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface Authenticator {
-	
+
 	/**
-	 * Verify this login attempt 
-	 *  
+	 * Verify this login attempt
+	 * 
 	 * @return valid or invalid authentication info
 	 */
 	boolean authenticate();

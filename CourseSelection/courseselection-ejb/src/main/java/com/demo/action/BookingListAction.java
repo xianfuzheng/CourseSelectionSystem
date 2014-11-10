@@ -50,32 +50,32 @@ public class BookingListAction implements BookingList, Serializable {
 	@Logger
 	private Log log;
 
-	public void getBookings() {	
+	public void getBookings() {
 		bookings = em
-				.createQuery("select b from StudentBooking b where b.user.username = :username order by b.bookTime")
+				.createQuery(
+						"select b from StudentBooking b where b.user.username = :username order by b.bookTime")
 				.setParameter("username", user.getUsername()).getResultList();
 	}
 
 	public StudentBooking getBooking() {
 		return booking;
 	}
-	
-	
-	public void cancelCourse(Course course){
-		
+
+	public void cancelCourse(Course course) {
+
 		log.info("Cancel booking: #{bookingList.booking.id} for #{user.username}");
 		StudentBooking cancelled = em.find(StudentBooking.class,
 				booking.getId());
-		log.info("cancelled="+cancelled);
-		
+		log.info("cancelled=" + cancelled);
+
 		if (cancelled != null)
 			em.remove(cancelled);
-		
+
 		getBookings();
-		
+
 		FacesMessages.instance().add("Cancelled successfully");
 	}
-	
+
 	@Remove
 	public void destroy() {
 		log.debug(this + " has been destroyed");

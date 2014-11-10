@@ -34,7 +34,7 @@ public class CourseBookingAction implements CourseBooking {
 	private Log log;
 
 	public void selectCourse(Course selectedCourse) {
-		
+
 		// check whether the user has booked or not
 		StudentBooking studentBooking = new StudentBooking();
 		studentBooking.setCourse(selectedCourse);
