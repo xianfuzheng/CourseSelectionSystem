@@ -284,11 +284,30 @@ input[type="submit"], input[type="button"] {
 	padding: 10px 0;
 	font-size: small;
 }
+
+#container p {
+	line-height: 150%;
+	padding: 10px 0;
+	font-size: small;
+}
+
 #container table {
 	width: 100%;
 	border: 1px solid #D2C9C4;
 	border-collapse: collapse;
 }
+
+#container table.feedback {
+	width: 450px;
+	margin-left:20px;
+	margin-top:10px;
+	border:0px;
+}
+
+#container table.feedback tbody td {
+	border:0px;
+}
+
 #container table caption {
 	padding-bottom: 6px;
 	text-align: left;
@@ -308,6 +327,8 @@ input[type="submit"], input[type="button"] {
 	border-bottom: 1px solid #D2C9C4;
 	font-size: small;
 }
+
+
 #container dt {
 	font-weight: bold;
 	float: left;

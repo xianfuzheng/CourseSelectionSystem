@@ -1,102 +1,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:s="http://jboss.org/schema/seam/taglib"
-      xmlns:a="http://richfaces.org/a4j">
+<f:view contentType="text/html"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<html>
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<title>JBoss Suites: Seam Framework</title>
 	<link href="css/screen.css" rel="stylesheet" type="text/css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 </h:head>
 
-<body id="pgHome">
+<body class="iframe">
 
-<div id="document">
+<div id="document" class="iframe">
+	<div id="container" class="iframe">
+		<div class="section">
+			<h1>Feedback or Enquire</h1>
+			<p>We welcome your suggestions and feedbacks regarding of our system and service.</p>
 
-	<div id="header">
-		<div id="title"><img src="img/hdr.title.gif" alt="JBoss Suites: seam framework demo"/></div>
-	</div>
-	
-	<div id="container">
-	
-		<div id="sidebar">		    
-			<h1>Integrated multi-layer validation</h1>
-			<p>
-			    Robust applications need data validation in several different places. Seam integrates Hibernate Validator,
-			    a set of annotations for expressing data model constraints in your domain model classes. Then, these 
-			    constraints are applied almost completely transparently at three levels of the application: by Seam when 
-			    the user first enters data, by EJB before persisting data to the database, and, if you use Hibernate to 
-			    generate your database schema, by the database constraints themselves. Multi-layer validation hardens
-			    your application and protects your data. Even better, it's self-documenting, and easy to change when
-			    your business rules change.
-			</p>
-			<p>
-			   <a href="#" onclick="window.open('exp/registerExp.html','exp','width=752,height=500,scrollbars=yes');">
-			      What happens when I register?
-			   </a>
-			</p>
+		</div>
+
+		<div id="feedbackFormDiv">
+			<h:form id="feedbackForm">
+			<fieldset>
+				<table class="feedback">
+					<tr>
+						<td><h:outputLabel value ="Type:"></h:outputLabel><s:span styleClass="required" rendered="#{required}">*</s:span></td>
+						<td> 
+							<h:selectOneMenu value="#{feedbackAction.type}">
+								<f:selectItems value="#{feedbackAction.feedBackTypes}" />
+							</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value ="Content:"></h:outputLabel><s:span styleClass="required" rendered="#{required}">*(at least 10 letters)</s:span></td>
+						<td> 
+							<h:inputTextarea cols="30" rows="10" id="content" value="#{feedbackAction.content}" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a:commandButton id="sendFeedBack" value="Submit" actionListener="#{feedbackAction.sendFeedBack}" render="@form" execute="@form"/>
+							<a:status id="status">
+							  <f:facet id="StartStatus" name="start">
+							     <h:graphicImage id="SpinnerGif" value="/img/spinner.gif"/>
+							  </f:facet>
+						       </a:status>
+				       
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h:messages id="messages" globalOnly="true"/>
+						</td>
+					</tr>
+				</table>
+
+			    </fieldset>
+			   </h:form>
 		</div>
 		
-		<div id="content">
-		
-			<div class="section">
-				<h1>Register</h1>
-			</div>
-			
-			<div class="section">
-                
-				<div class="entry errors">
-					<h:messages id="messages" globalOnly="true"/>
-				</div>
-
-                <h:form id="registration">
-				<fieldset>
-				
-					<s:decorate id="usernameDecorate" template="edit.xhtml">
-						<ui:define name="label">Username:</ui:define>
-						<h:inputText id="username" value="#{user.username}" required="true">
-							<a:ajax event="blur" render="usernameDecorate"/>
-						</h:inputText>
-					</s:decorate>
-					
-					<s:decorate id="nameDecorate" template="edit.xhtml">
-						<ui:define name="label">Real Name:</ui:define>
-						<h:inputText id="name" value="#{user.name}" required="true">
-							<a:ajax event="blur" render="nameDecorate"/>
-						</h:inputText>
-					</s:decorate>
-					
-					<s:decorate id="passwordDecorate" template="edit.xhtml">
-						<ui:define name="label">Password:</ui:define>
-						<h:inputSecret id="password" value="#{user.password}" required="true"/>
-					</s:decorate>
-					
-					<s:decorate id="verifyDecorate" template="edit.xhtml">
-						<ui:define name="label">Verify Password:</ui:define>
-						<h:inputSecret id="verify" value="#{register.verify}" required="true"/>
-					</s:decorate>
-					
-					<div class="buttonBox">
-						<h:commandButton id="register" value="Register" action="#{register.register}"/>
-						&#160;
-						<s:button id="cancel" value="Cancel" view="/home.xhtml"/>
-					</div>
-									
-				</fieldset>
-                </h:form>
-                
-			</div>
-			
-		</div>
-		
-	</div>
-	
-	<div id="footer">Created with JBoss EJB 3.0, Seam, JSF (Mojarra) and Facelets</div>
-	
+		<!-- main content ends-->
+	</div>	
 </div>
+<!-- document ends-->
 
 </body>
 
 </html>
+</f:view>
