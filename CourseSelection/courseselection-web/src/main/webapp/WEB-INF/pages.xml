@@ -19,7 +19,12 @@
     </page>
 
     <page view-id="/home.xhtml" action="#{identity.isLoggedIn}">
-
+         <navigation from-action="#{identity.hasRole('admin')}"> 
+      		<rule if-outcome="true"> 
+         		<redirect view-id="/admin/index.html"/> 
+      		</rule>
+		</navigation>
+		
         <navigation from-action="#{identity.isLoggedIn}"> 
       		<rule if-outcome="true"> 
          		<redirect view-id="/main.xhtml"/> 
@@ -27,7 +32,7 @@
       		<rule if-outcome="false"> 
          		<render view-id="/home.xhtml"/> 
       		</rule> 
-	</navigation>
+		</navigation>
         
     </page>
     
@@ -44,15 +49,9 @@
 
     <page view-id="/main.xhtml" 
           login-required="true">
-    
-        <navigation from-action="#{hotelBooking.selectHotel(hot)}">
-            <redirect view-id="/hotel.xhtml"/>
-        </navigation>
-        
         <navigation from-action="#{bookingList.cancel}">
             <redirect/>
         </navigation>
-        
     </page>
 
 	<page view-id="/my_courses.xhtml" 
