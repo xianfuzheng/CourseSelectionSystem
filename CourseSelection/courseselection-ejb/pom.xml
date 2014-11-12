@@ -12,9 +12,8 @@
     <artifactId>courseselection-ejb</artifactId>
     <packaging>ejb</packaging>
     <name>courseselection EJB Module</name>
-        
-    <dependencies>
 
+    <dependencies>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>

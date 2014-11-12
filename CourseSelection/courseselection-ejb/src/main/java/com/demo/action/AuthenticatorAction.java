@@ -13,6 +13,7 @@ import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.log.Log;
+import org.jboss.seam.security.Identity;
 
 import com.demo.bean.WebUser;
 import com.demo.intf.Authenticator;
@@ -24,6 +25,7 @@ import com.demo.intf.Authenticator;
  * @author Frank Zheng
  *
  */
+@SuppressWarnings("deprecation")
 @Stateless
 @Name("authenticator")
 public class AuthenticatorAction implements Authenticator {
@@ -37,6 +39,9 @@ public class AuthenticatorAction implements Authenticator {
 
 	@Logger
 	private Log log;
+	
+	@In 
+	Identity identity;
 
 	/*
 	 * (non-Javadoc)
@@ -57,6 +62,7 @@ public class AuthenticatorAction implements Authenticator {
 			Object obj = results.get(0);
 			if (obj instanceof WebUser) {
 				user = (WebUser) obj;
+				identity.addRole(user.getRole());
 				return true;
 			} else {
 				// error

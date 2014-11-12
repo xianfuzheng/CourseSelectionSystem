@@ -63,7 +63,7 @@ public class Course implements Serializable {
 	}
 
 	@NotNull
-	@Size(max = 50)
+	@Size(max = 100)
 	public String getName() {
 		return name;
 	}
